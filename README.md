@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dirigible · Girona ⇄ Mallorca
 
-## Getting Started
+Prototipo funcional de una aerolínea de dirigibles entre Girona (Costa Brava) y Palma de Mallorca, desarrollado como Trabajo Fin de Máster.
 
-First, run the development server:
+> **Proyecto conceptual – servicio no operativo.** No hay backend: reservas, cuentas, pagos y emails son simulados y se guardan en el `localStorage` del navegador.
+
+**Demo:** https://raulbric.github.io/Dirigible/
+
+## Qué incluye
+
+- Home, Empresas, Tarifas, Sostenibilidad, Seguridad, FAQ, Contacto y páginas legales con banner de cookies.
+- Checkout en 6 pasos: búsqueda con calendario de precios, vuelos, pasajeros, asientos y extras, pago simulado (con 3-D Secure) y confirmación con `.ics` y tarjeta de embarque en PDF.
+- Área de cliente: reservas (cambiar fecha, añadir extras, check-in, cancelar), Wind Points, perfil, pasajeros frecuentes y facturas.
+- Simulación de cancelación por meteorología y configurador de propuestas para empresas.
+
+## Datos de prueba
+
+| Qué | Valor |
+| --- | --- |
+| Cuenta demo | `demo@dirigible.es` / `demo1234` |
+| Código promocional | `LANZAMIENTO10` (−10 %) |
+| Tarjeta que falla | `4000 0000 0000 0002` |
+| Código 3-D Secure | cualquier código de 6 dígitos |
+
+## Desarrollo
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # exportación estática en /out
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+La marca, los precios, los horarios y los textos se editan en [`config/site.ts`](config/site.ts).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Next.js 16 (App Router, exportación estática) · React 19 · TypeScript · Tailwind CSS 4 · Zustand · Lucide · jsPDF · qrcode.
 
-## Learn More
+## Despliegue
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Cada `push` a `main` publica la web en GitHub Pages mediante [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). El build usa `GITHUB_PAGES=true` para servir la web bajo `/Dirigible`.

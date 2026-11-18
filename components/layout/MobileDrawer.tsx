@@ -66,9 +66,9 @@ export function MobileDrawer() {
           if (d.open) d.close();
           setExpanded(false);
         }
-        if (e.intersectionRatio === 1) setExpanded(true);
+        if (e.intersectionRatio >= 0.98) setExpanded(true);
       },
-      { root: d, threshold: [visible, 1] },
+      { root: d, threshold: [visible, 0.98] },
     );
     observer.observe(sheet);
 
@@ -121,8 +121,8 @@ export function MobileDrawer() {
         <div ref={scrollerRef} className="drawer-scroller">
           <nav ref={sheetRef} aria-label="Principal (móvil)" className="drawer-sheet">
             <div className="relative overflow-hidden bg-pastel px-5 pb-5 pt-4">
-              <div className="flex items-center justify-between">
-                <Link href="/" onClick={closeDrawer} aria-label="Inicio">
+              <div className="flex items-center justify-between gap-3">
+                <Link href="/" onClick={closeDrawer} aria-label="Inicio" className="min-w-0">
                   <Logo />
                 </Link>
                 <button

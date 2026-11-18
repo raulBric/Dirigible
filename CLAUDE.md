@@ -18,6 +18,7 @@ Es un **prototipo funcional para un Trabajo Fin de Máster**: el servicio no exi
 - **Datos de vuelos**: generados por una función mock a partir de las reglas de temporada y horarios (determinista por fecha para que la ocupación sea estable).
 - Mobile-first y accesible (**WCAG AA**, navegación por teclado, etiquetas en formularios), con SEO básico (metadata de Next por página).
 - Componentes reutilizables.
+- **Despliegue en GitHub Pages** (https://raulbric.github.io/Dirigible/): `next.config.ts` usa `output: "export"`, `trailingSlash` y `basePath: "/Dirigible"` solo cuando `GITHUB_PAGES=true`. Por eso **no** se puede usar nada que requiera servidor (route handlers dinámicos, Server Actions, cookies, rewrites, optimización de imágenes, `cacheComponents`). `robots.txt` y `sitemap.xml` son archivos estáticos en `public/`. Enlaces internos siempre con `next/link` o `router.push` para respetar el `basePath`.
 - Para HTML/CSS/JS de cliente (diálogos, formularios, validación, accesibilidad, rendimiento…), usar la skill `modern-web-guidance`.
 
 ## Marca y tono
