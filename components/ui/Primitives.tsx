@@ -1,5 +1,6 @@
 import type { ComponentProps, ReactNode } from "react";
 import type { LucideIcon } from "lucide-react";
+import Image, { type StaticImageData } from "next/image";
 
 export function SectionTitle({
   eyebrow,
@@ -78,9 +79,17 @@ export function ImagePlaceholder({
   tone = "sunset",
   className = "",
   label,
+  src,
+  sizes = "(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw",
+  preload = false,
 }: {
   alt: string;
   icon?: LucideIcon;
+  /** Imagen real (import estático). Si se omite, se muestra el degradado con icono. */
+  src?: StaticImageData;
+  sizes?: string;
+  /** Precargar la imagen (solo para la imagen principal visible al cargar, LCP). */
+  preload?: boolean;
   tone?: "sunset" | "sea" | "lilac" | "amber";
   className?: string;
   label?: string;
@@ -91,6 +100,14 @@ export function ImagePlaceholder({
     lilac: "from-violet-200 via-pink-100 to-amber-100",
     amber: "from-amber-100 via-orange-200 to-pink-200",
   };
+  if (src) {
+    return (
+      <div className={`relative overflow-hidden bg-linear-to-br ${tones[tone]} ${className}`}>
+        <Image src={src} alt={alt} fill sizes={sizes} preload={preload} placeholder="blur" className="object-cover" />
+        {label && <span className="absolute bottom-3 left-3 rounded-full bg-white/80 px-3 py-1 text-xs font-medium text-navy" aria-hidden>{label}</span>}
+      </div>
+    );
+  }
   return (
     <div role="img" aria-label={alt} className={`relative flex items-center justify-center overflow-hidden bg-linear-to-br ${tones[tone]} ${className}`}>
       {Icon && <Icon className="size-12 text-white drop-shadow" strokeWidth={1.5} aria-hidden />}

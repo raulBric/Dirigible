@@ -23,13 +23,17 @@ import { AIRPORTS, FAQS, ROUTE, STATS, TESTIMONIALS, WIND_POINTS } from "@/confi
 import { ButtonLink } from "@/components/ui/Button";
 import { Card, Container, ImagePlaceholder, SectionTitle } from "@/components/ui/Primitives";
 import { RouteMap } from "./Illustrations";
+import ventanalesImg from "@/assets/images/ventanales-panoramicos.webp";
+import espaciosImg from "@/assets/images/espacios-compartidos.webp";
+import gastronomiaImg from "@/assets/images/gastronomia.webp";
+import embarqueImg from "@/assets/images/embarque.webp";
 
 export function ExperienceSection() {
   const items = [
-    { icon: Eye, title: "Ventanales panorámicos", text: "Cristaleras del suelo al techo para ver el Mediterráneo a 300 metros de altura, sin vibraciones ni ruido.", alt: "Pasajeros mirando el mar a través de los grandes ventanales de la cabina", tone: "sea" as const },
-    { icon: Sofa, title: "Cabina «Lounge»", text: "50 butacas amplias en disposición 1-3-1, mesas compartidas y espacio para levantarte y pasear.", alt: "Cabina Lounge con butacas tapizadas en tonos claros y luz natural", tone: "lilac" as const },
-    { icon: ChefHat, title: "Gastronomía a bordo", text: "Menús de producto local del Empordà y de Mallorca, con opción vegetariana y vinos de la tierra.", alt: "Plato de suquet de pescado servido junto a la ventana del dirigible", tone: "amber" as const },
-    { icon: DoorOpen, title: "Embarque sin colas", text: "Llega 1 hora antes, deja tu equipaje y sube a bordo. Sin controles interminables ni puertas lejanas.", alt: "Terraza del vertipuerto con el dirigible amarrado al mástil", tone: "sunset" as const },
+    { icon: Eye, title: "Ventanales panorámicos", text: "Cristaleras del suelo al techo para ver el Mediterráneo a 300 metros de altura, sin vibraciones ni ruido.", alt: "Cabina del dirigible con butacas color crema y grandes ventanales que muestran los acantilados y calas de la Costa Brava", tone: "sea" as const, src: ventanalesImg },
+    { icon: Sofa, title: "Cabina «Lounge»", text: "50 butacas amplias en disposición 1-3-1, mesas compartidas y espacio para levantarte y pasear.", alt: "Zona social de la cabina Lounge: una familia contempla la costa junto a la barandilla del ventanal mientras otros pasajeros conversan en mesas altas", tone: "lilac" as const, src: espaciosImg },
+    { icon: ChefHat, title: "Gastronomía a bordo", text: "Menús de producto local del Empordà y de Mallorca, con opción vegetariana y vinos de la tierra.", alt: "Mesa junto al ventanal con pa amb tomàquet, jamón, quesos, sobrasada con miel, aceitunas, fruta y una copa de vino blanco, con la Costa Brava al fondo", tone: "amber" as const, src: gastronomiaImg },
+    { icon: DoorOpen, title: "Embarque sin colas", text: "Llega 1 hora antes, deja tu equipaje y sube a bordo. Sin controles interminables ni puertas lejanas.", alt: "Una familia con maletas camina desde la terminal del vertipuerto hacia el dirigible amarrado al mástil, recibida por la tripulación entre colinas verdes", tone: "sunset" as const, src: embarqueImg },
   ];
   return (
     <section aria-labelledby="experiencia" className="py-20 sm:py-24">
@@ -39,7 +43,7 @@ export function ExperienceSection() {
           {items.map((it, i) => (
             <li key={it.title} className="animate-fade-up" style={{ animationDelay: `${i * 80}ms` }}>
               <Card className="group h-full overflow-hidden transition duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-lift)]">
-                <ImagePlaceholder alt={it.alt} icon={it.icon} tone={it.tone} className="h-40 transition duration-500 group-hover:scale-105" />
+                <ImagePlaceholder alt={it.alt} icon={it.icon} tone={it.tone} src={it.src} className="h-40 transition duration-500 group-hover:scale-105" />
                 <div className="p-6">
                   <h3 className="text-lg text-navy">{it.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted">{it.text}</p>

@@ -4,6 +4,7 @@ import { B2B, BRAND } from "@/config/site";
 import { formatEUR } from "@/lib/format";
 import { ButtonLink } from "@/components/ui/Button";
 import { Card, Container, ImagePlaceholder, SectionTitle } from "@/components/ui/Primitives";
+import zonaPrivadaImg from "@/assets/images/zona-privada.webp";
 
 export const metadata: Metadata = {
   title: "Empresas y eventos",
@@ -40,7 +41,10 @@ export default function EmpresasPage() {
             </div>
           </div>
           <ImagePlaceholder
-            alt="Mesa de reuniones con ejecutivos dentro de la cabina privada del dirigible, con ventanales que muestran la costa"
+            alt="Sala de reuniones en la zona privada del dirigible: mesa de madera con portátiles y butacas de piel junto a grandes ventanales sobre la costa"
+            src={zonaPrivadaImg}
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            preload
             icon={Megaphone}
             tone="lilac"
             className="h-72 rounded-[32px] shadow-[var(--shadow-lift)] sm:h-96"
